@@ -1,5 +1,4 @@
 <?php
-session_start();
 $homePage = "Home Page";
 $studentPage = "Student Page";
 $teacherPage = "Teacher Page";

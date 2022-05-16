@@ -186,7 +186,39 @@ session_start();
 
             })
             $('#btnCreateQuestion').click(function() {
-                let noidung = $('#txtQuestion').val();
+                createQuestion();
+            })
+            $('#btnAddstudent').click(function() {
+                addListStudent();
+            })
+
+        });
+
+        function addListStudent(){
+            let listId=$("#txtListstudent").val();
+            let sep = /\r\n|\n/;
+            let arrayId=listId.split(sep);
+            let idClass= $("#idClassCurent").val();
+            console.log(arrayId);
+            console.log(idClass);
+            $.ajax({
+                type: "POST",
+                url : "./Controller/controller.php",
+                data: {
+                    act: "addListstudenttoclass",
+                    arrayStudentId: JSON.stringify(arrayId),
+                    idClass: idClass,
+                },
+                success: function(data) {
+                    console.log(data);
+                    showNotice(JSON.parse(data)['notice']);
+                    renderInfoclass(idClass);
+                }
+            })
+        }
+
+        function createQuestion() {
+            let noidung = $('#txtQuestion').val();
                 let cauA = $('#txtCauA').val();
                 let cauB = $('#txtCauB').val();
                 let cauC = $('#txtCauC').val();
@@ -257,8 +289,7 @@ session_start();
                         renderBankQuestion();
                     }
                 })
-            })
-        });
+        }
 
         function renderMember(){
             let idClass = $("#idClassCurent").val();
@@ -654,6 +685,7 @@ session_start();
     include "./View/form/form_create_question.php";
     include "./View/hienThiDiem/hienThiDiem.php";
     include "./View/chiTietdiem/chitietdiem.php";
+    include "./View/form/form_addStudent.php";
     ?>
 
     <!-- Side Navigation -->

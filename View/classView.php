@@ -55,7 +55,11 @@ class ClassView
             </div>
             <div class="col">
             </div>
-            <div class="col justify-content-end">
+            <div class="col justify-content-between">
+                <button type="button" class="btn btn-info text-center fw-bold" data-bs-toggle="modal" data-bs-target="#formAddstudent" id="btnAddstudent">
+                    <i class="fa-solid fa-plus"></i>Thêm học sinh</button>
+            </div>
+            <div class="col justify-content-between">
                 <button type="button" class="btn btn-warning text-center fw-bold" id="btnDeleteClass" onclick="deleteClass()">
                     <i class="fa-solid fa-trash"></i> Xóa Lớp</button>
             </div>

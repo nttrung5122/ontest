@@ -138,6 +138,17 @@ class ClassController{
         $data=ClassView::showDetailstestscores($listAnswer,$baiLam);
         return $data;
     }
+
+    public static function addListStudent($idClass,$listIdstudent){
+        $arrayStudent=json_decode($listIdstudent);
+        foreach($arrayStudent as $student){
+            if(!ClassController::checkStudentInClass($idClass,$student) && ClassModel::checkUsersExit($student)){
+                ClassModel::addStudentToClass($idClass,$student);
+            }
+        }
+        $data['notice']="Thêm sinh viên thành công";
+        return $data;
+    }
 }
     // echo ClassController::renderMember("5IabAbm4");
 

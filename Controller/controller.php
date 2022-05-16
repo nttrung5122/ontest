@@ -250,6 +250,11 @@ if (isset($_POST['act'])){
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
         break;
+        case "addListstudenttoclass":{
+            require './classController.php';
+            $data=ClassController::addListStudent($_POST['idClass'],$_POST['arrayStudentId']);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
     } 
 }
 

@@ -9,6 +9,24 @@ class ClassModel{
         $data= DataProvider::executeSQL($sql);
     }
 
+    public static function getAllUsers(){
+        $sql = "SELECT * FROM `taikhoan`;";
+        $dataSql= DataProvider::executeSQL($sql);
+        return $dataSql;
+    }
+
+    public static function checkUsersExit($email){
+        $dataSql=  ClassModel :: getAllUsers();
+        while ($row = mysqli_fetch_array($dataSql)){
+            if($row[0]==$email){
+                return true;
+            }
+            
+        }
+        return false;
+    }   
+    
+
     public static function getClassOfTeacher($email){
         // $sql = "SELECT * FROM `lop` WHERE `maGiangVien`=\`$email\`;";
         $sql = "SELECT * FROM `lop` WHERE `maGiangVien`=\"$email\";";
@@ -90,6 +108,10 @@ class ClassModel{
         $sql = "SELECT * FROM `chitietbailam` WHERE chitietbailam.maTaiKhoan='$idStudent' AND chitietbailam.maDe='$idTest';"; 
         $data = DataProvider::executeSQL($sql);
         return $data;
+    }
+
+    public static function addListStudent($idClass,$listIdstudent){
+
     }
 
 }
